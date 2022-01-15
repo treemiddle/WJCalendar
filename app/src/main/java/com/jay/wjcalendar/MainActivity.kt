@@ -2,7 +2,6 @@ package com.jay.wjcalendar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jay.wjcalendarmodule.CalendarTest
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
