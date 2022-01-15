@@ -47,15 +47,15 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
+
                 groupId = 'com.jay.wjcalendarmodule'
-                artifactId = 'final'
-                version = '0.0.1'
+                version = '1.0'
             }
             debug(MavenPublication) {
                 from components.debug
+
                 groupId = 'com.jay.wjcalendarmodule'
-                artifactId = 'final-debug'
-                version = '0.0.1'
+                version = '1.0'
             }
         }
     }
