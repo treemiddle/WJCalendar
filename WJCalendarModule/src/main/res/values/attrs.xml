@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WJCalendarView">
+        <attr name="current_day" format="boolean" />
+        <attr name="color_current_day" format="color" />
+    </declare-styleable>
+</resources>
