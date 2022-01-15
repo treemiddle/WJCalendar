@@ -7,8 +7,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import com.jay.wjcalendarmodule.calendar.WJCalendar
+import com.jay.wjcalendarmodule.calendar.WJCalendarImpl
 import com.jay.wjcalendarmodule.databinding.WjCalendarViewBinding
-import com.jay.wjcalendarmodule.model.CalendarDay
+import com.jay.wjcalendarmodule.model.WJCalendarEntity
 
 class WJCalendarView : ConstraintLayout {
 
@@ -23,6 +25,8 @@ class WJCalendarView : ConstraintLayout {
 
     private var currentDayColor = Color.RED
     private var currentDayFlag = false
+
+    private lateinit var wjCalendar: WJCalendar
 
     constructor(context: Context) : super(context) {
         onCreate()
@@ -68,18 +72,12 @@ class WJCalendarView : ConstraintLayout {
     }
 
     private fun onCreate() {
+        wjCalendar = WJCalendarImpl()
         binding.rv.adapter = calendarAdapter
-        test()
-    }
 
-    private fun test() {
-        val list = mutableListOf<CalendarDay>().apply {
-            for (i in 1..30) {
-                add(CalendarDay(i.toString()))
-            }
-        }
-
-        calendarAdapter.submitList(list)
+        wjCalendar.initCalendar()
+        wjCalendar.setupCalendar(2022, 1)
+        calendarAdapter.submitList(wjCalendar.createDayList())
     }
 
 }

@@ -2,14 +2,14 @@ package com.jay.wjcalendarmodule
 
 import com.jay.wjcalendarmodule.base.WJBaseViewHolder
 import com.jay.wjcalendarmodule.databinding.ItemDayBinding
-import com.jay.wjcalendarmodule.model.CalendarDay
+import com.jay.wjcalendarmodule.model.WJCalendarEntity
 
 class WJCalendarDayViewHolder(
     private val binding: ItemDayBinding
-) : WJBaseViewHolder<CalendarDay>(binding) {
+) : WJBaseViewHolder<WJCalendarEntity>(binding) {
 
-    override fun bind(item: CalendarDay) {
-        binding.day = item
+    override fun bind(item: WJCalendarEntity) {
+        binding.item = item
         binding.executePendingBindings()
     }
 
