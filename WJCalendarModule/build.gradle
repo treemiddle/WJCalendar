@@ -48,8 +48,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-
-                groupId = 'com.jay.wjcalendarmodule'
+                groupId = "com.jay"
+                artifactId = "wjcalendarmodule"
                 version = '1.0'
             }
         }
