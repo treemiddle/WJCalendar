@@ -8,4 +8,22 @@
         <attr name="wjcv_before_drawable" format="reference" />
         <attr name="wjcv_next_drawable" format="reference" />
     </declare-styleable>
+
+
+    <declare-styleable name="WJHeaderView">
+        <attr name="header_padding_top" format="dimension" />
+        <attr name="header_padding_bottom" format="dimension" />
+        <attr name="header_padding_left" format="dimension" />
+        <attr name="header_padding_right" format="dimension" />
+        <attr name="header_background_color" format="color" />
+        <attr name="header_title_text" format="string" />
+        <attr name="header_title_textColor" format="color" />
+        <attr name="header_title_textSize" format="dimension" />
+        <attr name="header_title_textStyle" format="enum">
+            <enum name="bold" value="0" />
+            <enum name="italic" value="1" />
+        </attr>
+        <attr name="header_before_drawable" format="reference" />
+        <attr name="header_next_drawable" format="reference" />
+    </declare-styleable>
 </resources>
