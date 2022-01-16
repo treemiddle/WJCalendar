@@ -19,11 +19,13 @@
                 android:id="@+id/iv_before"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/alert_dark_frame"
+                android:maxWidth="100dp"
+                android:maxHeight="100dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@android:drawable/editbox_dropdown_dark_frame" />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -40,11 +42,13 @@
                 android:id="@+id/iv_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/alert_dark_frame"
+                android:maxWidth="100dp"
+                android:maxHeight="100dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@android:drawable/editbox_dropdown_dark_frame" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

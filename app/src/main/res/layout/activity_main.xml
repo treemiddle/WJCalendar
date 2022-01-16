@@ -16,20 +16,22 @@
                 android:id="@+id/one_cv"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
-                app:day_background_color="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:wjcv_before_drawable="@drawable/ic_before"
+                app:wjcv_day_background_color="@color/teal_200"
+                app:wjcv_next_drawable="@drawable/ic_next" />
 
             <com.jay.wjcalendarmodule.WJCalendarView
                 android:id="@+id/two_cv"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:layout_marginTop="10dp"
-                app:day_background_color="@android:color/holo_blue_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/one_cv" />
+                app:layout_constraintTop_toBottomOf="@id/one_cv"
+                app:wjcv_day_background_color="@android:color/holo_blue_dark" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

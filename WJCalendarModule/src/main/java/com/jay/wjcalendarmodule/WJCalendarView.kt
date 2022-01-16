@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.jay.wjcalendarmodule.calendar.WJCalendar
 import com.jay.wjcalendarmodule.calendar.WJCalendarImpl
@@ -30,9 +33,12 @@ class WJCalendarView : ConstraintLayout {
 
     private val calendarAdapter: WJCalendarDayAdapter = WJCalendarDayAdapter()
 
-    private var dayBackgroundColor = Color.BLACK
     private var currentDayColor = Color.BLACK
     private var currentDayFlag = false
+
+    private var dayBackgroundColor = Color.BLACK
+    private var beforeDrawable: Drawable? = null
+    private var nextDrawable: Drawable? = null
 
     private lateinit var calendarWJ: WJCalendar
 
@@ -81,7 +87,10 @@ class WJCalendarView : ConstraintLayout {
     private fun setTypeArray(typeArray: TypedArray) {
         currentDayColor = typeArray.getColor(R.styleable.WJCalendarView_color_current_day, currentDayColor)
         currentDayFlag = typeArray.getBoolean(R.styleable.WJCalendarView_current_day, currentDayFlag)
-        dayBackgroundColor = typeArray.getColor(R.styleable.WJCalendarView_day_background_color, dayBackgroundColor)
+
+        dayBackgroundColor = typeArray.getColor(R.styleable.WJCalendarView_wjcv_day_background_color, dayBackgroundColor)
+        beforeDrawable = typeArray.getDrawable(R.styleable.WJCalendarView_wjcv_before_drawable)
+        nextDrawable = typeArray.getDrawable(R.styleable.WJCalendarView_wjcv_next_drawable)
     }
 
     private fun onCreate() {
@@ -92,6 +101,8 @@ class WJCalendarView : ConstraintLayout {
         setDayBackgroundColor(createDayList())
         setHeaderTitle()
         initClickListener()
+        setBeforeDrawable()
+        setNextDrawable()
     }
 
     private fun createDayList(): List<WJCalendarEntity> = calendarWJ.createDayList()
@@ -118,6 +129,10 @@ class WJCalendarView : ConstraintLayout {
 
         calendarSubmitList(list)
     }
+
+    private fun setBeforeDrawable() = beforeDrawable?.let { binding.ivBefore.background = it }
+
+    private fun setNextDrawable() = nextDrawable?.let { binding.ivNext.background = it }
 
     @SuppressLint("SetTextI18n")
     private fun setHeaderTitle() {

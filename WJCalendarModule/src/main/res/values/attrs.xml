@@ -3,6 +3,9 @@
     <declare-styleable name="WJCalendarView">
         <attr name="current_day" format="boolean" />
         <attr name="color_current_day" format="color" />
-        <attr name="day_background_color" format="color" />
+
+        <attr name="wjcv_day_background_color" format="color" />
+        <attr name="wjcv_before_drawable" format="reference" />
+        <attr name="wjcv_next_drawable" format="reference" />
     </declare-styleable>
 </resources>
