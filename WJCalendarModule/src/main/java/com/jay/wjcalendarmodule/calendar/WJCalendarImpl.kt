@@ -94,12 +94,42 @@ class WJCalendarImpl : WJCalendar {
         return "${getYear()}년 ${getMonth()}월 ${getDay()}일"
     }
 
-    override fun nextMonth() {
-        TODO("Not yet implemented")
+    override fun nextMonth(): List<WJCalendarEntity> {
+        testCaseNextMonth()
+
+        return createDayList()
     }
 
-    override fun beforeMonth() {
-        TODO("Not yet implemented")
+    override fun beforeMonth(): List<WJCalendarEntity> {
+        testCaseBeforeMonth()
+
+        return createDayList()
+    }
+
+    override fun testCaseNextMonth(): Int {
+        val currentYear = getYear()
+        val currentMonth = getMonth()
+
+        if (currentMonth >= 12) {
+            setupCalendar(currentYear + 1, 1)
+        } else {
+            setMonth(currentMonth + 1)
+        }
+
+        return getMonth()
+    }
+
+    override fun testCaseBeforeMonth(): Int {
+        val currentYear = getYear()
+        val currentMonth = getMonth()
+
+        if (currentMonth <= 1) {
+            setupCalendar(currentYear - 1, 12)
+        } else {
+            setMonth(currentMonth - 1)
+        }
+
+        return getMonth()
     }
 
 }

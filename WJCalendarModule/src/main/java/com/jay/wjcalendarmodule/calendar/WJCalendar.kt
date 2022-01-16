@@ -22,7 +22,10 @@ interface WJCalendar {
     fun getDay(): Int
     fun getCurrentDate(): String
 
-    fun nextMonth()
-    fun beforeMonth()
+    fun nextMonth(): List<WJCalendarEntity>
+    fun beforeMonth(): List<WJCalendarEntity>
+
+    fun testCaseNextMonth(): Int
+    fun testCaseBeforeMonth(): Int
 
 }

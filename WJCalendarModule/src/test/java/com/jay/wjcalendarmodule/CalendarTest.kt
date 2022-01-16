@@ -1,6 +1,7 @@
 package com.jay.wjcalendarmodule
 
 import com.jay.wjcalendarmodule.calendar.WJCalendarImpl
+import com.jay.wjcalendarmodule.calendar.WJCalendarType
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -273,6 +274,108 @@ class CalendarTest {
 
         Assert.assertEquals(31, impl.lastDayOfMonth())
     }
+
+    @Test
+    fun `37_2022년 1월 일 때 testCaseNextMonth()는 2를 반환한다`() {
+        impl.setupCalendar(2022, 1)
+
+        Assert.assertEquals(2, impl.testCaseNextMonth())
+    }
+
+    @Test
+    fun `38_2022년 12월 일 때 testCaseNextMonth()는 1을 반환한다`() {
+        impl.setupCalendar(2022, 12)
+
+        Assert.assertEquals(1, impl.testCaseNextMonth())
+    }
+
+    @Test
+    fun `39_2022년 12월 일 때 testCaseNextMonth()를 누르면 getCurrentData()는 2023년 1월 1일을 반환한다`() {
+        impl.run {
+            setupCalendar(2022, 12)
+            testCaseNextMonth()
+        }
+
+        val currentDate = impl.getCurrentDate()
+
+        Assert.assertEquals(
+            "2023년 1월 1일",
+            currentDate
+        )
+    }
+
+    @Test
+    fun `40_2022년 1월 일 때 testCaseBeforeMonth()는 12를 반환한다`() {
+        impl.setupCalendar(2022, 1)
+
+        val beforeMonth = impl.testCaseBeforeMonth()
+
+        Assert.assertEquals(12, beforeMonth)
+    }
+
+    @Test
+    fun `41_2022년 12월 일 때 testCaseBeforeMonth()는 11을 반환한다`() {
+        impl.setupCalendar(2022, 12)
+
+        val beforeMonth = impl.testCaseBeforeMonth()
+
+        Assert.assertEquals(11, beforeMonth)
+    }
+
+    @Test
+    fun `42_2022년 1월 일 때 testCaseBeforeMonth()를 누르면 getCurrentDate()는 2021년 12월 1일을 반환한다`() {
+        impl.run {
+            setYear(2022)
+            setMonth(1)
+            setDay(1)
+            testCaseBeforeMonth()
+        }
+
+        val currentDate = impl.getCurrentDate()
+
+        Assert.assertEquals(
+            "2021년 12월 1일",
+            currentDate
+        )
+    }
+
+    @Test
+    fun `43_2022년 1월 일 때 nextMonth()를 누르면 list의 DAY TYPE의 사이즈는 28개를 반환한다`() {
+        impl.setupCalendar(2022, 1)
+
+        val list = impl.nextMonth().filter { it.type != WJCalendarType.BLANK }
+
+        Assert.assertEquals(list.count(), 28)
+    }
+
+    @Test
+    fun `44_2022년 12월 일 때 nextMonth()를 누르면 list의 BLANK TYPE의 사이즈는 0개를 반환한다`() {
+        impl.setupCalendar(2022, 12)
+
+        val list = impl.nextMonth().filter { it.type == WJCalendarType.BLANK }
+
+        Assert.assertEquals(list.count(), 0)
+    }
+
+    @Test
+    fun `45_2022년 1월 일 때 beforeMonth()를 누르면 list의 DAY TYPE의 사이즈는 31개를 반환한다`() {
+        impl.setupCalendar(2022, 1)
+
+        val list = impl.beforeMonth().filter { it.type == WJCalendarType.DAY }
+
+        Assert.assertEquals(list.count(), 31)
+    }
+
+    @Test
+    fun `46_2022년 5월 일 때 beforeMonth()를 누르면 list의 BLANK TYPE의 사이즈는 5개를 반환한다`() {
+        impl.setupCalendar(2022, 5)
+
+        val list = impl.beforeMonth().filter { it.type == WJCalendarType.BLANK }
+
+        Assert.assertEquals(list.count(), 5)
+    }
+
+
 
     @After
     fun finish() {
