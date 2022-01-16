@@ -71,11 +71,11 @@ class WJCalendarImpl : WJCalendar {
     }
 
     override fun setMonth(month: Int) {
-        calendar.set(Calendar.YEAR, month.minus(1))
+        calendar.set(Calendar.MONTH, month.minus(1))
     }
 
     override fun setDay(day: Int) {
-        calendar.set(Calendar.YEAR, day)
+        calendar.set(Calendar.DAY_OF_MONTH, day)
     }
 
     override fun getYear(): Int {

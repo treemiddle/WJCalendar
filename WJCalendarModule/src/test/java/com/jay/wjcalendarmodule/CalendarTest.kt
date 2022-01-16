@@ -31,6 +31,8 @@ class CalendarTest {
 
     @Test
     fun `2_2022년 1월의 시작요일은 토요일(7)이다`() {
+        impl.setupCalendar(2022, 1)
+
         Assert.assertEquals(7, impl.firstDayOfWeek())
     }
 
@@ -48,11 +50,15 @@ class CalendarTest {
 
     @Test
     fun `5_2022년 2월의 시작요일은 화요일(3)이다`() {
+        impl.setupCalendar(2022, 2)
+
         Assert.assertEquals(3, impl.firstDayOfWeek())
     }
 
     @Test
     fun `6_2022년 2월의 마지막 일은 28일이다`() {
+        impl.setupCalendar(2022, 2)
+
         Assert.assertEquals(28, impl.lastDayOfMonth())
     }
 
@@ -65,6 +71,8 @@ class CalendarTest {
 
     @Test
     fun `8_2022년 2월의 시작요일은 화요일(3)이다`() {
+        impl.setupCalendar(2022, 2)
+
         Assert.assertEquals(3, impl.firstDayOfWeek())
     }
 
@@ -82,11 +90,15 @@ class CalendarTest {
 
     @Test
     fun `11_2022년 4월의 시작요일은 금요일(6)이다`() {
+        impl.setupCalendar(2022, 4)
+
         Assert.assertEquals(6, impl.firstDayOfWeek())
     }
 
     @Test
     fun `12_2022년 4월의 마지막 일은 30일이다`() {
+        impl.setupCalendar(2022, 4)
+
         Assert.assertEquals(30, impl.lastDayOfMonth())
     }
 
@@ -99,11 +111,15 @@ class CalendarTest {
 
     @Test
     fun `14_2022년 5월의 시작요일은 일요일(1)이다`() {
+        impl.setupCalendar(2022, 5)
+
         Assert.assertEquals(1, impl.firstDayOfWeek())
     }
 
     @Test
     fun `15_2022년 5월의 마지막 일은 31일이다`() {
+        impl.setupCalendar(2022, 5)
+
         Assert.assertEquals(31, impl.lastDayOfMonth())
     }
 
@@ -116,11 +132,19 @@ class CalendarTest {
 
     @Test
     fun `17_2022년 6월의 시작요일은 수요일(4)이다`() {
+        impl.setupCalendar(2022, 6)
+
         Assert.assertEquals(4, impl.firstDayOfWeek())
     }
 
     @Test
     fun `18_2022년 6월의 마지막 일은 30일이다`() {
+        impl.run {
+            setYear(2022)
+            setMonth(6)
+            setDay(1)
+        }
+
         Assert.assertEquals(30, impl.lastDayOfMonth())
     }
 
@@ -133,11 +157,15 @@ class CalendarTest {
 
     @Test
     fun `20_2022년 7월의 시작요일은 금요일(6)이다`() {
+        impl.setupCalendar(2022, 7)
+
         Assert.assertEquals(6, impl.firstDayOfWeek())
     }
 
     @Test
     fun `21_2022년 7월의 마지막 일은 31일이다`() {
+        impl.setupCalendar(2022, 7)
+
         Assert.assertEquals(31, impl.lastDayOfMonth())
     }
 
@@ -150,11 +178,15 @@ class CalendarTest {
 
     @Test
     fun `23_2022년 8월의 시작요일은 월요일(2)이다`() {
+        impl.setupCalendar(2022, 8)
+
         Assert.assertEquals(2, impl.firstDayOfWeek())
     }
 
     @Test
     fun `24_2022년 8월의 마지막 일은 31일이다`() {
+        impl.setupCalendar(2022, 8)
+
         Assert.assertEquals(31, impl.lastDayOfMonth())
     }
 
@@ -167,11 +199,15 @@ class CalendarTest {
 
     @Test
     fun `26_2022년 9월의 시작요일은 목요일(5)이다`() {
+        impl.setupCalendar(2022, 9)
+
         Assert.assertEquals(5, impl.firstDayOfWeek())
     }
 
     @Test
     fun `27_2022년 9월의 마지막 일은 30일이다`() {
+        impl.setupCalendar(2022, 9)
+
         Assert.assertEquals(30, impl.lastDayOfMonth())
     }
 
@@ -184,11 +220,15 @@ class CalendarTest {
 
     @Test
     fun `29_2022년 10월의 시작요일은 토요일(7)이다`() {
+        impl.setupCalendar(2022, 10)
+
         Assert.assertEquals(7, impl.firstDayOfWeek())
     }
 
     @Test
     fun `30_2022년 10월의 마지막 일은 31일이다`() {
+        impl.setupCalendar(2022, 10)
+
         Assert.assertEquals(31, impl.lastDayOfMonth())
     }
 
@@ -201,11 +241,15 @@ class CalendarTest {
 
     @Test
     fun `32_2022년 11월의 시작요일은 화요일(3)이다`() {
+        impl.setupCalendar(2022, 11)
+
         Assert.assertEquals(3, impl.firstDayOfWeek())
     }
 
     @Test
     fun `33_2022년 11월의 마지막 일은 30일이다`() {
+        impl.setupCalendar(2022, 11)
+
         Assert.assertEquals(30, impl.lastDayOfMonth())
     }
 
@@ -218,11 +262,15 @@ class CalendarTest {
 
     @Test
     fun `35_2022년 12월의 시작요일은 목요일(5)이다`() {
+        impl.setupCalendar(2022, 12)
+
         Assert.assertEquals(5, impl.firstDayOfWeek())
     }
 
     @Test
     fun `36_2022년 12월의 마지막 일은 31일이다`() {
+        impl.setupCalendar(2022, 12)
+
         Assert.assertEquals(31, impl.lastDayOfMonth())
     }
 
