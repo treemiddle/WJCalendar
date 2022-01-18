@@ -5,15 +5,19 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.jay.wjcalendarmodule.calendar.WJCalendar
 import com.jay.wjcalendarmodule.calendar.WJCalendarImpl
+import com.jay.wjcalendarmodule.databinding.WjCalendarViewBinding
 import com.jay.wjcalendarmodule.mapper.toDayColor
 import com.jay.wjcalendarmodule.model.WJCalendarEntity
-import com.jay.wjcalendarmodule.databinding.WjCalendarViewBinding
+import com.jay.wjcalendarmodule.model.WJWeekColor
 
 class WJCalendarView : ConstraintLayout {
 
@@ -32,6 +36,8 @@ class WJCalendarView : ConstraintLayout {
     private var dayBackgroundColor = Color.BLACK
     private var beforeDrawable: Drawable? = null
     private var nextDrawable: Drawable? = null
+    private var weekList = resources.getTextArray(R.array.week)
+    private var weekColor = mutableListOf<WJWeekColor>()
 
     private lateinit var calendarWJ: WJCalendar
 
@@ -86,12 +92,18 @@ class WJCalendarView : ConstraintLayout {
         )
         beforeDrawable = typeArray.getDrawable(R.styleable.WJCalendarView_wjcv_before_drawable)
         nextDrawable = typeArray.getDrawable(R.styleable.WJCalendarView_wjcv_next_drawable)
+
+        val list = typeArray.getTextArray(R.styleable.WJCalendarView_android_entries)
+        setWeekArray(list)
     }
 
     private fun onCreate() {
         calendarWJ = WJCalendarImpl()
         binding.rv.adapter = calendarAdapter
-        calendarWJ.setupCalendar(2022, 1)
+        calendarWJ.setupCalendar(
+            calendarWJ.getYear(),
+            calendarWJ.getMonth()
+        )
 
         setDayBackgroundColor(createDayList())
         setHeaderTitle()
@@ -129,13 +141,59 @@ class WJCalendarView : ConstraintLayout {
 
     private fun setNextDrawable() = nextDrawable?.let { binding.ivNext.background = it }
 
+    private fun setWeekArray(charList: Array<CharSequence>?) {
+        if (charList.isNullOrEmpty()) {
+            weekList.forEachIndexed { index, charSequence ->
+                setWeekTitle(
+                    index,
+                    charSequence.toString()
+                )
+            }
+        } else {
+            charList.forEachIndexed { index, charSequence ->
+                setWeekTitle(
+                    index,
+                    charSequence.toString()
+                )
+            }
+        }
+    }
+
+    private fun setWeekTitle(index: Int, value: String) = when (index) {
+        0 -> binding.tvSun.text = value
+        1 -> binding.tvMon.text = value
+        2 -> binding.tvTue.text = value
+        3 -> binding.tvWed.text = value
+        4 -> binding.tvThu.text = value
+        5 -> binding.tvFri.text = value
+        6 -> binding.tvSat.text = value
+        else -> throw IndexOutOfBoundsException("week title index over")
+    }
+
+    private fun setWeekTextColor(colors: List<WJWeekColor>) {
+        for (i in colors.indices) {
+            when (colors[i].week) {
+                0 -> binding.tvSun.setTextColor(colors[i].color)
+                1 -> binding.tvMon.setTextColor(colors[i].color)
+                2 -> binding.tvTue.setTextColor(colors[i].color)
+                3 -> binding.tvWed.setTextColor(colors[i].color)
+                4 -> binding.tvThu.setTextColor(Color.GREEN)
+                5 -> binding.tvFri.setTextColor(colors[i].color)
+                6 -> binding.tvSat.setTextColor(colors[i].color)
+                else -> throw IndexOutOfBoundsException("week text color index over")
+            }
+        }
+    }
 
     @SuppressLint("SetTextI18n")
     private fun setHeaderTitle() {
-        val year = calendarWJ.getYear()
-        val month = calendarWJ.getMonth()
+        binding.tvTitle.text = "${calendarWJ.getYear()}.${calendarWJ.getMonth()}"
+    }
 
-        binding.tvTitle.text = "${year}.${month}"
+    fun setWeekColor(colors: List<WJWeekColor>) {
+        weekColor.addAll(colors)
+
+        setWeekTextColor(weekColor)
     }
 
 }
