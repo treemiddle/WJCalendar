@@ -7,20 +7,13 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.annotation.ColorInt
-import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.jay.wjcalendarmodule.calendar.WJCalendar
 import com.jay.wjcalendarmodule.calendar.WJCalendarImpl
-import com.jay.wjcalendarmodule.calendar.WJCalendarType
-import com.jay.wjcalendarmodule.databinding.WjCalendarViewBinding
 import com.jay.wjcalendarmodule.mapper.toDayColor
 import com.jay.wjcalendarmodule.model.WJCalendarEntity
-
-fun calendarView(context: Context, block: WJCalendarView.WJBuilder.() -> Unit): WJCalendarView =
-    WJCalendarView.WJBuilder(context).apply(block).build()
+import com.jay.wjcalendarmodule.databinding.WjCalendarViewBinding
 
 class WJCalendarView : ConstraintLayout {
 
@@ -51,17 +44,13 @@ class WJCalendarView : ConstraintLayout {
         onCreate()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super (
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
     ) {
         getAttrs(attrs, defStyleAttr)
         onCreate()
-    }
-
-    private fun onCreateByBuilder(builder: WJBuilder) {
-        dayBackgroundColor = builder.dayBackgroundColor
     }
 
     private fun getAttrs(attributSet: AttributeSet) {
@@ -75,7 +64,8 @@ class WJCalendarView : ConstraintLayout {
     }
 
     private fun getAttrs(attributSet: AttributeSet, defStyleAttr: Int) {
-        val typedArray = context.obtainStyledAttributes(attributSet, R.styleable.WJCalendarView, defStyleAttr, 0)
+        val typedArray =
+            context.obtainStyledAttributes(attributSet, R.styleable.WJCalendarView, defStyleAttr, 0)
 
         try {
             setTypeArray(typedArray)
@@ -85,10 +75,15 @@ class WJCalendarView : ConstraintLayout {
     }
 
     private fun setTypeArray(typeArray: TypedArray) {
-        currentDayColor = typeArray.getColor(R.styleable.WJCalendarView_color_current_day, currentDayColor)
-        currentDayFlag = typeArray.getBoolean(R.styleable.WJCalendarView_current_day, currentDayFlag)
+        currentDayColor =
+            typeArray.getColor(R.styleable.WJCalendarView_color_current_day, currentDayColor)
+        currentDayFlag =
+            typeArray.getBoolean(R.styleable.WJCalendarView_current_day, currentDayFlag)
 
-        dayBackgroundColor = typeArray.getColor(R.styleable.WJCalendarView_wjcv_day_background_color, dayBackgroundColor)
+        dayBackgroundColor = typeArray.getColor(
+            R.styleable.WJCalendarView_wjcv_day_background_color,
+            dayBackgroundColor
+        )
         beforeDrawable = typeArray.getDrawable(R.styleable.WJCalendarView_wjcv_before_drawable)
         nextDrawable = typeArray.getDrawable(R.styleable.WJCalendarView_wjcv_next_drawable)
     }
@@ -134,25 +129,13 @@ class WJCalendarView : ConstraintLayout {
 
     private fun setNextDrawable() = nextDrawable?.let { binding.ivNext.background = it }
 
+
     @SuppressLint("SetTextI18n")
     private fun setHeaderTitle() {
         val year = calendarWJ.getYear()
         val month = calendarWJ.getMonth()
 
         binding.tvTitle.text = "${year}.${month}"
-    }
-
-    class WJBuilder(val context: Context) {
-
-        var dayBackgroundColor: Int = Color.BLACK
-
-        fun setDayBackgroundColor(@ColorInt color: Int): WJBuilder = apply {
-            this.dayBackgroundColor = color
-        }
-
-        fun build(): WJCalendarView = WJCalendarView(context).apply {
-            onCreateByBuilder(this@WJBuilder)
-        }
     }
 
 }

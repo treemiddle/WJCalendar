@@ -61,10 +61,6 @@ class WJHeaderView @JvmOverloads constructor(
         }
     }
 
-//    var titleText: String? = null
-//    var titleColor = Color.BLACK
-//    var titleSize = 12f
-//    var titleStyle = Typeface.NORMAL
     private fun setTypeArray(typeArray: TypedArray) {
         headerPaddingTop = typeArray.getDimension(R.styleable.WJHeaderView_header_padding_top, headerPaddingTop)
         headerPaddingBottom = typeArray.getDimension(R.styleable.WJHeaderView_header_padding_bottom, headerPaddingBottom)
@@ -73,6 +69,10 @@ class WJHeaderView @JvmOverloads constructor(
         headerBackgroundColor = typeArray.getColor(R.styleable.WJHeaderView_header_background_color, headerBackgroundColor)
         beforeDrawable = typeArray.getDrawable(R.styleable.WJHeaderView_header_before_drawable)
         nextDrawable = typeArray.getDrawable(R.styleable.WJHeaderView_header_next_drawable)
+        titleText = typeArray.getString(R.styleable.WJHeaderView_header_title_text)
+        titleColor = typeArray.getColor(R.styleable.WJHeaderView_header_title_textColor, titleColor)
+        titleSize = typeArray.getDimension(R.styleable.WJHeaderView_header_title_textSize, titleSize)
+        titleStyle = typeArray.getType(R.styleable.WJHeaderView_header_title_textStyle)
     }
 
 }

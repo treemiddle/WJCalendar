@@ -6,8 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.jay.wjcalendar.databinding.ActivityMainBinding
-import com.jay.wjcalendarmodule.WJCalendarView
-import com.jay.wjcalendarmodule.calendarView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,10 +14,5 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with(binding) {
-            calendarView(this@MainActivity) {
-                setDayBackgroundColor(Color.RED)
-            }
-        }
     }
 }
